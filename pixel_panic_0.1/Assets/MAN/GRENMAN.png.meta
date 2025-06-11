@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      GRENMAN_0: -1625379845703606058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

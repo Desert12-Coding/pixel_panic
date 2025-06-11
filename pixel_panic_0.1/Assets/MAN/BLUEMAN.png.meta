@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BLUEMAN_0: -4222882546502639459
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
