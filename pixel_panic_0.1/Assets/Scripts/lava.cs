@@ -126,7 +126,7 @@ public class FallingLava : MonoBehaviour
     void TrySpreadLava(Vector2 contactPoint)
     {
         // Simple spread effect
-        if (Random.value > 0.7f) // 30% chance to spread
+        if (Random.value > 0.7f) // 0% chance to spread
         {
             Vector2 spreadPos = contactPoint + Random.insideUnitCircle * 0.5f;
             Instantiate(this, spreadPos, Quaternion.identity);
