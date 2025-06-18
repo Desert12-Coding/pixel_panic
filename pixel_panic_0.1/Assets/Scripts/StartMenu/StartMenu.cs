@@ -1,30 +1,42 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class StartMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject startMenuCanvas;
-    
-    void Start()
+    // List of scene names to choose from
+    [SerializeField] private List<string> sceneNames = new List<string>();
+
+    public void OnPlayButton()
     {
-        // Show menu when scene starts
-        startMenuCanvas.SetActive(true);
-        // Pause game time if needed
-        Time.timeScale = 0f;
+        // Hide the menu
+        gameObject.SetActive(false);
+        
+        // Make sure we have scenes to choose from
+        if (sceneNames.Count == 0)
+        {
+            Debug.LogError("No scenes assigned in the RandomSceneLoader!");
+            return;
+        }
+
+        // Select a random scene
+        int randomIndex = Random.Range(0, sceneNames.Count);
+        string sceneToLoad = sceneNames[randomIndex];
+
+        // Load the scene
+        SceneManager.LoadScene(sceneToLoad);
+        
+        // Resume time in case it was paused
+        Time.timeScale = 1f;
     }
-    
-    public void OnStartButton()
+
+    public void OnQuitButton ()
     {
-        startMenuCanvas.SetActive(false);
-        Time.timeScale = 1f; // Resume game time
-        // Add any other startup logic
+        Application.Quit ();
     }
-    
-    public void OnQuitButton()
+
+    public void OnOptionsButton()
     {
-        Application.Quit();
-        #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-        #endif
+        SceneManager.LoadScene(1);
     }
 }
