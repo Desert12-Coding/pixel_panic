@@ -1,74 +1,138 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Required for new Input System (optional)
+using UnityEngine.InputSystem;
 
 public class Freeze : MonoBehaviour
 {
-    [Header("Settings")]
-    [Tooltip("How many key presses are needed to unfreeze")]
+    [Header("Freeze Settings")]
     public int requiredPresses = 6;
-
-    [Tooltip("Show debug messages")]
+    public float freezeInterval = 10f;
     public bool debugMessages = true;
 
+    [Header("Visual Feedback")]
+    public Color frozenColor = new Color(0.6f, 0.9f, 1f, 1f); // Icy blue
+    public float colorLerpSpeed = 5f;
+
     [Header("UI (Optional)")]
-    [Tooltip("Drag a TextMeshProUGUI or Text UI element here to show count")]
     public UnityEngine.UI.Text pressCounterText;
 
+    // Components
     private int currentPressCount = 0;
-    private Rigidbody rb; // For 3D
-    private Rigidbody2D rb2D; // For 2D
-    private bool isFrozen = true;
+    private Rigidbody rb;
+    private Rigidbody2D rb2D;
+    private SpriteRenderer spriteRenderer;
+    private Material originalMaterial;
+    private Color originalColor;
+    private bool isFrozen = false;
+    private float timer = 0f;
+    private PlayerInput playerInput; // Input System reference
+    private InputActionAsset originalInputActions; // Store original inputs
 
     private void Start()
     {
-        // Get Rigidbody (3D or 2D)
         rb = GetComponent<Rigidbody>();
         rb2D = GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>(); // Get the Input System component
 
-        FreezePlayer(true); // Freeze at start
+        // Store original input actions
+        if (playerInput != null)
+        {
+            originalInputActions = playerInput.actions;
+        }
+
+        // Visual setup
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null) originalColor = spriteRenderer.color;
+        else if (TryGetComponent<Renderer>(out var renderer))
+        {
+            originalMaterial = renderer.material;
+            originalColor = originalMaterial.color;
+        }
+
+        FreezePlayer(true); // Start frozen
     }
 
     private void Update()
     {
-        if (isFrozen && Keyboard.current.anyKey.wasPressedThisFrame) // Works with any key
+        // Auto-freeze timer
+        timer += Time.deltaTime;
+        if (timer >= freezeInterval && !isFrozen)
+        {
+            FreezePlayer(true);
+            if (debugMessages) Debug.Log("Auto-freeze triggered!");
+            timer = 0f;
+        }
+
+        // Unfreeze on key presses - works even when input is disabled
+        if (isFrozen && Keyboard.current.anyKey.wasPressedThisFrame)
         {
             currentPressCount++;
             UpdateCounterUI();
+            if (currentPressCount >= requiredPresses) FreezePlayer(false);
+        }
 
-            if (debugMessages)
-                Debug.Log($"Key pressed! ({currentPressCount}/{requiredPresses})");
-
-            if (currentPressCount >= requiredPresses)
-            {
-                FreezePlayer(false); // Unfreeze
-                if (debugMessages)
-                    Debug.Log("Player unfrozen!");
-            }
+        UpdateVisualFeedback();
+        
+        // Keep velocity at zero while frozen
+        if (isFrozen)
+        {
+            if (rb != null) rb.linearVelocity = Vector3.zero;
+            if (rb2D != null) rb2D.linearVelocity = Vector2.zero;
         }
     }
 
     private void FreezePlayer(bool freeze)
     {
         isFrozen = freeze;
-
-        // Freeze/unfreeze Rigidbody (3D)
-        if (rb != null)
+        
+        if (freeze)
         {
-            rb.isKinematic = freeze;
-            rb.linearVelocity = Vector3.zero;
+            currentPressCount = 0;
+            timer = 0f;
+            
+            // Disable all input actions
+            if (playerInput != null)
+            {
+                playerInput.actions = null; // This completely disables input
+            }
         }
-
-        // Freeze/unfreeze Rigidbody2D (2D)
-        if (rb2D != null)
+        else
         {
-            rb2D.simulated = !freeze;
-            rb2D.linearVelocity = Vector2.zero;
+            // Re-enable input actions
+            if (playerInput != null && originalInputActions != null)
+            {
+                playerInput.actions = originalInputActions;
+            }
         }
+        
+        UpdateCounterUI();
+    }
+
+    private void UpdateVisualFeedback()
+    {
+        Color targetColor = isFrozen ? frozenColor : originalColor;
+        if (spriteRenderer != null)
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, targetColor, Time.deltaTime * colorLerpSpeed);
+        else if (originalMaterial != null)
+            originalMaterial.color = Color.Lerp(originalMaterial.color, targetColor, Time.deltaTime * colorLerpSpeed);
     }
 
     private void UpdateCounterUI()
     {
         if (pressCounterText != null)
-            pressCounterText.text = $"Press any key: {currentPressCount}/{requiredPresses}";
+            pressCounterText.text = isFrozen 
+                ? $"Press any key: {currentPressCount}/{requiredPresses}" 
+                : "Freeze cooldown...";
+    }
+
+    private void OnDestroy()
+    {
+        if (originalMaterial != null) 
+            originalMaterial.color = originalColor;
+            
+        // Restore input actions if destroyed while frozen
+        if (isFrozen && playerInput != null && originalInputActions != null)
+        {
+            playerInput.actions = originalInputActions;
+        }
     }
 }
