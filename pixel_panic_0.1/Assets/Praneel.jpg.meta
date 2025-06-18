@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a62c0936703934746bf1e93e96c37c5e
+guid: 62ac36d14d289bf44b62a06eb87948e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5301869598275241590
-    second: istockphoto-1398516147-612x612_0
+      213: -2419681016897521762
+    second: Praneel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: istockphoto-1398516147-612x612_0
+      name: Praneel_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 612
-        height: 408
+        width: 5184
+        height: 3456
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 67683a22f46049940800000000000000
-      internalID: 5301869598275241590
+      spriteID: e9731166fe09b6ed0800000000000000
+      internalID: -2419681016897521762
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      istockphoto-1398516147-612x612_0: 5301869598275241590
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
