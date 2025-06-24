@@ -15,11 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Lobby.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/TALLTAYR.unity
-    guid: ca1ddae52d43da74a8e5524f1b6690e4
+    path: Assets/Scenes/Ice.unity
+    guid: e3fb9518f49fe5341984aea2b28c39f5
   - enabled: 1
-    path: Assets/Scenes/COCKRINGSCENE.unity
-    guid: 5a289fc7d30d840449fe07268d266db8
+    path: Assets/Scenes/Lava.unity
+    guid: def4043a98993ea43a68aa9891b8e747
+  - enabled: 1
+    path: Assets/Scenes/Jungle.unity
+    guid: e3d33ba3e679f3148997a9c2e618b808
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: b4584a4c542798a498eb2bd775193e59
+  - enabled: 1
+    path: Assets/Scenes/Space.unity
+    guid: b01f063481f25e94db6084f3f2c0547d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

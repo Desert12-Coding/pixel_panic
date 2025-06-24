@@ -856,8 +856,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
-  - TALLTAYR
-  - COCKRINGSCENE
+  - Ice
+  - Lava
+  - Jungle
+  - City
+  - Space
 --- !u!1 &1363327112
 GameObject:
   m_ObjectHideFlags: 0
