@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 1898088499490942768}
   - component: {fileID: 4577784302461861314}
   - component: {fileID: 469975642122899284}
-  - component: {fileID: 4765568138986840146}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -220,21 +219,3 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 184393122813133026}
   groundCheckRadius: 0.5
---- !u!114 &4765568138986840146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051889833957642734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 105ddc056fc013f4aa952b0afac27821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredPresses: 4
-  freezeInterval: 15
-  debugMessages: 1
-  frozenColor: {r: 0.0141509175, g: 1, b: 0.9433006, a: 1}
-  colorLerpSpeed: 88
-  pressCounterText: {fileID: 0}

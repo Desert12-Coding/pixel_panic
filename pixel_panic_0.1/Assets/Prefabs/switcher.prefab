@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69362979d93bb144ae3491f07a60af3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNames:
+  - Lava
+  - Ice
+  - Jungle
+  - City
+  - Space
+  changeInterval: 60
