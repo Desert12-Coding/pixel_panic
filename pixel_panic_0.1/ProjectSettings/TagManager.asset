@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - Snowball
-  - Border
   layers:
   - Default
   - TransparentFX
@@ -13,7 +12,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - snow
   - 
   - 
   - 
