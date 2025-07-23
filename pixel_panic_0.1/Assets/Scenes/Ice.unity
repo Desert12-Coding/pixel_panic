@@ -132713,7 +132713,7 @@ Transform:
   m_GameObject: {fileID: 1059217994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4917946, y: -4.1364875, z: 0}
+  m_LocalPosition: {x: 1.4917946, y: 15.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -242137,7 +242137,7 @@ Transform:
   m_GameObject: {fileID: 1826506814}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.15408, y: -6.875053, z: 0}
+  m_LocalPosition: {x: 3.15408, y: 34.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266306,9 +266306,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Mass: 0.15
+  m_LinearDamping: 2.32
+  m_AngularDamping: 2.92
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -266320,7 +266320,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1988631888
 GameObject:
   m_ObjectHideFlags: 0
@@ -288840,6 +288840,18 @@ PrefabInstance:
     - target: {fileID: 469975642122899284, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: groundCheckRadius
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898088499490942768, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
+      propertyPath: m_Mass
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898088499490942768, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
+      propertyPath: m_LinearDamping
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898088499490942768, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 4765568138986840146, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: colorLerpSpeed
