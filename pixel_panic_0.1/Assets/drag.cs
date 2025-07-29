@@ -1,23 +1,33 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : customDragCoefficient
-private int drag value = 0.5f; 
+public class CustomDrag : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] [Range(0, 1)] private float dragCoefficient = 0.5f;
+    [SerializeField] private bool relativeToMass = true;
+    
+    private Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("No Rigidbody found on " + gameObject.name);
+            enabled = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void FixedUpdate()
-{
-    // Apply a force opposite to the velocity, scaled by a custom drag coefficient
-    float customDragCoefficient = 0.5f; // Adjust this value as needed
-    GetComponent<Rigidbody>().AddForce(-GetComponent<Rigidbody>().linearVelocity * customDragCoefficient, ForceMode.Acceleration);
-}
+    {
+        if (rb == null) return;
+        
+        // Calculate drag force
+        Vector3 dragForce = -rb.linearVelocity * dragCoefficient;
+        
+        // Optionally scale by mass for more consistent behavior
+        if (relativeToMass) dragForce *= rb.mass;
+        
+        // Apply the force
+        rb.AddForce(dragForce, ForceMode.Force);
+    }
 }
