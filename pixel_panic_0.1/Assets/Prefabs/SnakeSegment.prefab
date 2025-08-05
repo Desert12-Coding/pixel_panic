@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5027176246336994449}
   - component: {fileID: 4799563264808417580}
   - component: {fileID: -5765873020470042231}
+  - component: {fileID: 4434876053186233128}
   m_Layer: 0
   m_Name: SnakeSegment
   m_TagString: Untagged
@@ -118,7 +119,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -134,3 +135,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4434876053186233128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091821603146189242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ed086b9ad979645b7f5d7e14f71ab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 50
+  destroyOnHit: 0
+  damageOnTrigger: 0
+  damageOnCollision: 1
+  targetLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  damagePlayer: 1
+  damageEnemies: 1
+  hitEffect: {fileID: 0}

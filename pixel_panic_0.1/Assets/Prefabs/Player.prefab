@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1898088499490942768}
   - component: {fileID: 4577784302461861314}
   - component: {fileID: 469975642122899284}
+  - component: {fileID: -1349156493692657614}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -219,3 +220,28 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 184393122813133026}
   groundCheckRadius: 0.5
+--- !u!114 &-1349156493692657614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051889833957642734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b201f4b35f11de448c07a7258510592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  destroyOnDeath: 1
+  deathDelay: 0
+  changeSceneOnDeath: 1
+  onDamageTaken:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []

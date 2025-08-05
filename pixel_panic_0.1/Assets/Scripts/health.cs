@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class Health : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private bool destroyOnDeath = true;
     [SerializeField] private float deathDelay = 0f;
+
+    [Header("Death Settings")]
+    [SerializeField] private bool changeSceneOnDeath = false;
 
     [Header("Events")]
     public UnityEvent onDamageTaken;
@@ -45,12 +49,19 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+        
         isDead = true;
         onDeath.Invoke();
 
         if (destroyOnDeath)
         {
             Destroy(gameObject, deathDelay);
+        }
+
+        if (changeSceneOnDeath)
+        {
+            SceneManager.LoadScene("StartScreen");
         }
     }
 
