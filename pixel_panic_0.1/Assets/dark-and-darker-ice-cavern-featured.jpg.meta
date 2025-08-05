@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      dark-and-darker-ice-cavern-featured_0: -710462676269260897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
