@@ -2,15 +2,11 @@ using UnityEngine;
 
 public class laser : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private float MoveSpeed = 1f;
+    
     // Update is called once per frame
     void Update()
     {
-       transform.position += (Vector3)(new Vector2(1f, 0) * Time.deltaTime);
+       transform.position += (Vector3)(new Vector2(1f, 0) * MoveSpeed * Time.deltaTime);
     }
 }
