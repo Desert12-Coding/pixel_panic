@@ -147,10 +147,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed086b9ad979645b7f5d7e14f71ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 50
+  damageAmount: 2
   destroyOnHit: 0
   damageOnTrigger: 0
   damageOnCollision: 1
+  applyDPS: 0
+  dpsAmount: 33.4
+  dpsDuration: 1000
+  dpsInterval: 0.5
   targetLayers:
     serializedVersion: 2
     m_Bits: 256

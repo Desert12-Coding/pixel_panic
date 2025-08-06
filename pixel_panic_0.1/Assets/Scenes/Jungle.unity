@@ -482,7 +482,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1349156493692657614, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 469975642122899284, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: groundCheckRadius
@@ -551,10 +551,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7051889833957642734, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 718126469}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
 --- !u!1 &334526074
 GameObject:
@@ -777,36 +774,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1 &718126468 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7051889833957642734, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
-  m_PrefabInstance: {fileID: 255417585}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &718126469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 718126468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b201f4b35f11de448c07a7258510592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  destroyOnDeath: 1
-  deathDelay: 0
-  changeSceneOnDeath: 1
-  onDamageTaken:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1489613678
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,11 +934,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ed086b9ad979645b7f5d7e14f71ab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 100
   destroyOnHit: 0
   damageOnTrigger: 0
   damageOnCollision: 1
-  applyDPS: 1
+  applyDPS: 0
   dpsAmount: 33.4
   dpsDuration: 1000
   dpsInterval: 0.5
