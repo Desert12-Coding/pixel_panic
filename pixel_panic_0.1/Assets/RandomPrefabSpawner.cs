@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq; // Required for Sum()
 
 public class AdvancedPrefabSpawner : MonoBehaviour
 {
@@ -23,6 +24,15 @@ public class AdvancedPrefabSpawner : MonoBehaviour
     public float maxSpawnInterval = 3f;
     public int maxSpawnCount = 10; // 0 = infinite
 
+    [Header("Difficulty Scaling")]
+    public bool scaleOverTime = true;
+    public float timeToMaxDifficulty = 300f; // 5 minutes
+    public float minIntervalAtMaxDifficulty = 0.3f;
+    public AnimationCurve difficultyCurve = new AnimationCurve(
+        new Keyframe(0, 0),
+        new Keyframe(1, 1)
+    );
+
     [Header("Collision Handling")]
     public bool avoidOverlaps = true;
     public float objectRadius = 0.5f;
@@ -31,10 +41,17 @@ public class AdvancedPrefabSpawner : MonoBehaviour
     [Header("Debug")]
     public bool showSpawnRadius = true;
     public bool showPreview = true;
+    
     private int spawnedCount = 0;
+    private float elapsedTime = 0f;
+    private float initialMinInterval;
+    private float initialMaxInterval;
 
     void Start()
     {
+        initialMinInterval = minSpawnInterval;
+        initialMaxInterval = maxSpawnInterval;
+
         if (initialDelay > 0)
         {
             Invoke("StartSpawning", initialDelay);
@@ -45,15 +62,52 @@ public class AdvancedPrefabSpawner : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (scaleOverTime)
+        {
+            elapsedTime += Time.deltaTime;
+            UpdateSpawnIntervals();
+        }
+    }
+
+    void UpdateSpawnIntervals()
+    {
+        float progress = Mathf.Clamp01(elapsedTime / timeToMaxDifficulty);
+        float curveValue = difficultyCurve.Evaluate(progress);
+
+        minSpawnInterval = Mathf.Lerp(
+            initialMinInterval, 
+            minIntervalAtMaxDifficulty, 
+            curveValue
+        );
+
+        maxSpawnInterval = Mathf.Lerp(
+            initialMaxInterval,
+            minIntervalAtMaxDifficulty * 1.5f,
+            curveValue
+        );
+    }
+
     void StartSpawning()
     {
         if (spawnRepeatedly)
         {
-            InvokeRepeating("SpawnWithWeights", 0f, GetNextInterval());
+            SpawnWithWeights(); // Immediate first spawn
+            Invoke("ScheduleNextSpawn", GetNextInterval());
         }
         else
         {
             SpawnWithWeights();
+        }
+    }
+
+    void ScheduleNextSpawn()
+    {
+        if (spawnRepeatedly && (maxSpawnCount == 0 || spawnedCount < maxSpawnCount))
+        {
+            SpawnWithWeights();
+            Invoke("ScheduleNextSpawn", GetNextInterval());
         }
     }
 
@@ -78,11 +132,7 @@ public class AdvancedPrefabSpawner : MonoBehaviour
         }
 
         // Calculate total weight
-        float totalWeight = 0;
-        foreach (var item in prefabs)
-        {
-            if (item.prefab != null) totalWeight += item.spawnWeight;
-        }
+        float totalWeight = prefabs.Sum(item => item.spawnWeight);
 
         if (totalWeight <= 0)
         {
@@ -107,15 +157,9 @@ public class AdvancedPrefabSpawner : MonoBehaviour
         }
 
         spawnedCount++;
-        
-        // Update interval if repeating
-        if (spawnRepeatedly)
-        {
-            CancelInvoke();
-            InvokeRepeating("SpawnWithWeights", GetNextInterval(), GetNextInterval());
-        }
     }
 
+    // === MISSING METHOD ADDED BELOW ===
     void TrySpawnPrefab(GameObject prefabToSpawn)
     {
         Vector3 spawnPosition = Vector3.zero;
