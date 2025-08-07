@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LaserSpawner : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class LaserSpawner : MonoBehaviour
     [SerializeField] private float maxSpawnDelay = 3f;
     [SerializeField] private Vector2 spawnAreaMin;
     [SerializeField] private Vector2 spawnAreaMax;
+    [SerializeField] private float minDistanceBetweenLasers = 2f;
+    [SerializeField] private int maxAttempts = 10;
+
+    private List<GameObject> activeLasers = new List<GameObject>();
 
     private void Start()
     {
@@ -18,22 +23,67 @@ public class LaserSpawner : MonoBehaviour
     {
         while (true)
         {
-            // Wait for random time between min and max delay
-            float waitTime = Random.Range(minSpawnDelay, maxSpawnDelay);
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(Random.Range(minSpawnDelay, maxSpawnDelay));
 
-            // Generate random position within spawn area
-            Vector2 spawnPosition = new Vector2(
-                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-                Random.Range(spawnAreaMin.y, spawnAreaMax.y)
-            );
-
-            // Instantiate the laser
-            Instantiate(laserPrefab, spawnPosition, Quaternion.identity);
+            Vector2 spawnPosition = GetBestAvailableSpawnPosition();
+            GameObject newLaser = Instantiate(laserPrefab, spawnPosition, Quaternion.identity);
+            activeLasers.Add(newLaser);
+            
+            // Clean up destroyed lasers
+            activeLasers.RemoveAll(laser => laser == null);
         }
     }
 
-    // Optional: Draw the spawn area in the editor for visualization
+    private Vector2 GetBestAvailableSpawnPosition()
+    {
+        Vector2 bestPosition = Vector2.zero;
+        float bestDistance = 0f;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            Vector2 testPosition = new Vector2(
+                Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                Random.Range(spawnAreaMin.y, spawnAreaMax.y));
+
+            float currentMinDistance = GetMinimumDistanceToLasers(testPosition);
+
+            // If we find a position that meets our requirements, use it immediately
+            if (currentMinDistance >= minDistanceBetweenLasers)
+            {
+                return testPosition;
+            }
+
+            // Otherwise keep track of the best position we found
+            if (currentMinDistance > bestDistance)
+            {
+                bestDistance = currentMinDistance;
+                bestPosition = testPosition;
+            }
+        }
+
+        // If we didn't find a perfect position, return the best one we found
+        return bestPosition;
+    }
+
+    private float GetMinimumDistanceToLasers(Vector2 position)
+    {
+        if (activeLasers.Count == 0) return float.MaxValue;
+
+        float minDistance = float.MaxValue;
+        foreach (GameObject laser in activeLasers)
+        {
+            if (laser != null)
+            {
+                float distance = Vector2.Distance(position, laser.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                }
+            }
+        }
+        return minDistance;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
