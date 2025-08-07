@@ -400,10 +400,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 359390911}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65326d65146d86449899083ede8e90ab, type: 3}
+  m_Script: {fileID: 11500000, guid: efadec30e727ab341b189f7b1b2c07fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 4
+  startDelay: 4
 --- !u!1 &378563289
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,9 +589,9 @@ GameObject:
   m_Component:
   - component: {fileID: 523515321}
   - component: {fileID: 523515320}
-  - component: {fileID: 523515322}
   - component: {fileID: 523515324}
   - component: {fileID: 523515323}
+  - component: {fileID: 523515325}
   m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
@@ -662,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 523515319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.33, y: 2.1, z: 0}
+  m_LocalPosition: {x: -43.89, y: 2.3, z: 0}
   m_LocalScale: {x: 14, y: 14, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -673,19 +674,6 @@ Transform:
   - {fileID: 1566257053}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &523515322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523515319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65326d65146d86449899083ede8e90ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveSpeed: 4
 --- !u!114 &523515323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,6 +736,20 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.49999997
+--- !u!114 &523515325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523515319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efadec30e727ab341b189f7b1b2c07fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveSpeed: 4
+  startDelay: 0
 --- !u!1 &531043507
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,11 +863,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7761589504395213068, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.66
+      value: -14.63
       objectReference: {fileID: 0}
     - target: {fileID: 7761589504395213068, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.28
+      value: -4.22
       objectReference: {fileID: 0}
     - target: {fileID: 7761589504395213068, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: m_LocalPosition.z
