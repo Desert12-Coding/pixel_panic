@@ -263,7 +263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1349156493692657614, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1349156493692657614, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3767,8 +3767,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 100
   destroyOnHit: 0
-  damageOnTrigger: 1
-  damageOnCollision: 0
+  damageOnTrigger: 0
+  damageOnCollision: 1
   applyDPS: 0
   dpsAmount: 5
   dpsDuration: 3
