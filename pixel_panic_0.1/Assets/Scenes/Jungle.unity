@@ -500,6 +500,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7303494876648612003, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1685185365}
     - target: {fileID: 7761589504395213068, guid: 6a2cece47dc651b44831f7d192105b1d, type: 3}
       propertyPath: m_LocalScale.x
       value: 3.455114
@@ -1491,7 +1495,6 @@ GameObject:
   - component: {fileID: 1685185364}
   - component: {fileID: 1685185366}
   - component: {fileID: 1685185365}
-  - component: {fileID: 1685185367}
   m_Layer: 5
   m_Name: healthText
   m_TagString: Untagged
@@ -1538,7 +1541,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1617,18 +1620,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685185363}
   m_CullTransparentMesh: 1
---- !u!114 &1685185367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685185363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8934a3c7122e30b47ab081870827d672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1814629519
 GameObject:
   m_ObjectHideFlags: 0

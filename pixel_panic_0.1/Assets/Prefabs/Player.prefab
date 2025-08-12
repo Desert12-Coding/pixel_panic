@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 4577784302461861314}
   - component: {fileID: 469975642122899284}
   - component: {fileID: -1349156493692657614}
+  - component: {fileID: 7303494876648612003}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -245,3 +246,16 @@ MonoBehaviour:
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7303494876648612003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7051889833957642734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8934a3c7122e30b47ab081870827d672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
